@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function ctrl_c() {
-	echo -e "\n[!] Saliendo..."
+	echo -e "\n[!] Exiting..."
 	tput cnorm; exit 1
 }
 trap crtl_c INT
