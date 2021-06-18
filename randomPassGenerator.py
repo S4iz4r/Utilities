@@ -3,7 +3,6 @@
 
 import random
 from time import time
-import concurrent.futures
 
 minus = ("abcdefghijklmnopqrstuvwxyz")
 mayus = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -54,11 +53,9 @@ def generator(password, password_length, tamaño_diccionario, contador, password
 		contador += 1
 		fichero.write(f"{datos}\n")
 		password = []
-#with concurrent.futures.ProcessPoolExecutor() as executor:
-#	executor.map(generator(password, password_length, tamaño_diccionario, contador, password_characters))
+
 generator(password, password_length, tamaño_diccionario, contador, password_characters)
 t2 = time()
 print(f"\nDiccionario finalizado en {round(t2-t1,2)} segundos\n")
-
 
 fichero.close()
