@@ -9,9 +9,9 @@ trap ctrl_c INT
 tput civis
 
 hosts=($@)
-echo "[!] ${hosts[@]}"
 
 if [ $1 ]; then
+    echo -e "\n[!] Hosts: ${hosts[@]}\n"
     for host in ${hosts[@]}; do
         echo -e "\n\t[>] $host\n"
         for port in $(seq 1 65535); do
