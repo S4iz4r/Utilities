@@ -13,8 +13,7 @@ hosts=($1 $2 $3 $4 $5)
 if [ $1 ]; then
     for host in ${hosts[@]}; do
         for port in $(seq 1 65535); do
-            timeout 1 bash -c "echo '' > /dev/tcp/$host/$port"  2>/dev/null && echo "[*]$host ==
-> Port $port - OPEN" &
+            timeout 1 bash -c "echo '' > /dev/tcp/$host/$port"  2>/dev/null && echo "[*]$host ==> Port $port - OPEN" &
         done; wait
     done
 else
