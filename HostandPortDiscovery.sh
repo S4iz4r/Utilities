@@ -16,7 +16,7 @@ if [[ $1 == *.*.*. ]] && [[ $2 ]]; then
     echo -e "\t[*] Scanning ports"
     for host in ${hosts[@]}; do
         echo -e "\t\t[>] $host"
-        for port in $(seq 1 1000); do
+        for port in $(seq 1 10000); do
             timeout 1 bash -c "echo '' > /dev/tcp/$host/$port" 2>/dev/null && echo -e "\t\t\t[*] $host ==> Port $port - OPEN" 
         done  
     done
