@@ -4,58 +4,58 @@
 import random
 from time import time
 
-minus = ("abcdefghijklmnopqrstuvwxyz")
-mayus = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+lower = ("abcdefghijklmnopqrstuvwxyz")
+upper = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 num = ("0123456789")
 simb = ('!@#$%^&*()-_+=~[]{}|\':;<>,.?"/')
 
-nombre_archivo = str(input("\nIntroduzca un nombre para su diccionario: "))
-fichero = open(f"{nombre_archivo}.txt", "w")
-password_length = int(input("\nIntroduzca la longitud de la contraseña: "))
-tamaño_diccionario = int(input("\nIntroduzca la cantidad de contraseñas que desea generar: "))
+file_name = str(input("\nEnter name for dictionary: "))
+file = open(f"{file_name}.txt", "w")
+password_length = int(input("\nEnter length for password: "))
+dictionary_size = int(input("\nEnter the number of passwords: "))
 password_characters = str(input("""
-    \nIntroduzca los caracteres que comporndrán la contraseña:
-Opciones:
-1 - Sólo minúsculas
-2 - Sólo mayúsculas
-3 - Sólo números
-4 - Combinación de las opciones 1 y 2
-5 - Combinación de las opciones 2 y 3
-Deje el campo vacío para usar todas las combinaciones (símbolos incuidos)
-o introduzca su propia lista de caracteres: """))
+    \nEnter the characters that will make up the password:
+Options:
+1 - Only lowercase
+2 - Only uppercase
+3 - Only numbers
+4 - Combination of options 1 and 2
+5 - Combination of options 2 and 3
+Leave the field empty to use all combinations (symbols included)
+or enter your own character list: """))
 
 def split(password_characters):
     return list(password_characters)
 
 if password_characters == "":
-    password_characters = split(minus + mayus + num + simb)
+    password_characters = split(lower + upper + num + simb)
 elif password_characters == "1":
-    password_characters = split(minus)
+    password_characters = split(lower)
 elif password_characters == "2":
-    password_characters = split(mayus)
+    password_characters = split(upper)
 elif password_characters == "3":
     password_characters = split(num)
 elif password_characters == "4":
-    password_characters = split(minus + mayus)
+    password_characters = split(lower + upper)
 elif password_characters == "5":
-    password_characters = split(mayus + num)
+    password_characters = split(upper + num)
 else:
     password_characters = split(password_characters)
 
 password = []
-contador = 1
+counter = 1
 t1 = time()
-def generator(password, password_length, tamaño_diccionario, contador, password_characters):
-	while contador <= tamaño_diccionario:
+def generator(password, password_length, dictionary_size, counter, password_characters):
+	while counter <= dictionary_size:
 		for i in range(password_length):
 			password.append(random.choice(password_characters))
-		datos = "".join(map(str,password))
-		contador += 1
-		fichero.write(f"{datos}\n")
+		data = "".join(map(str,password))
+		counter += 1
+		file.write(f"{data}\n")
 		password = []
 
-generator(password, password_length, tamaño_diccionario, contador, password_characters)
+generator(password, password_length, dictionary_size, counter, password_characters)
 t2 = time()
-print(f"\nDiccionario finalizado en {round(t2-t1,2)} segundos\n")
+print(f"\nDictionary completed in {round(t2-t1,2)} seconds\n")
 
-fichero.close()
+file.close()
