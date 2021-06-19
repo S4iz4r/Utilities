@@ -23,6 +23,7 @@ if [[ $1 == *.*.*. ]] && [[ $2 ]]; then
 else
     echo -e "\n[!] Usage:  ./HPDiscovery.sh  <ip-address --.--.--.> <interface>\n"
     echo -e "\n[!] Example: ./HPDiscovery.sh 127.0.0. eth0\n"
+    echo -e "\n[!] Port scanner range set from 1 to 10000 by deffault"
     tput cnorm; exit 1
 fi
 
