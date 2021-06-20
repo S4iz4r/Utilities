@@ -14,7 +14,7 @@ if [[ $1 == *.*.*. ]] && [[ $2 ]]; then
         for r in $(seq $(echo "$1" | awk '{print $2}' FS='.') 254); do
             for a in $(seq $(echo "$1" | awk '{print $3}' FS='.') 254); do
                 for i in $(seq 1 254); do
-                    ttl=$(timeout 1 bash -c "ping -c 1 -I $interface $s.$r.$a.$i | tr ' ' '\n' | grep -E 'ttl=|time=' | tr '\n' ' ' | tr -d 'ltime=' 2>&1") && echo -e "Host $s.$r.$a.$i ttl=${ttl}\bms - ACTIVE" &
+                    ttl=$(timeout 1 bash -c "ping -c 1 -I $interface $s.$r.$a.$i | grep ttl= | awk -F= '{print \$3,\$4}' | sed 's/ //3; s/time/ /' 2>&1") && echo -e "Host $s.$r.$a.$i ttl=${ttl} - ACTIVE" &
                 done
             done
         done
