@@ -9,7 +9,7 @@ trap ctrl_c INT
 if [ $1 ]; then
 	ip_address=$1
 	for port in $(seq 1 65535); do
-		timeout 1 bash -c "etcho '' > /dev/tcp/$ip_address/$port"  2>/dev/null && echo "[*] Port $port - OPEN" &
+		timeout 1 bash -c "echo '' > /dev/tcp/$ip_address/$port"  2>/dev/null && echo "[*] Port $port - OPEN" &
                 sleep .003
 	done; wait
 else
