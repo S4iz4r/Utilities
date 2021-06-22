@@ -20,7 +20,7 @@ if [[ $1 == *.*.*. ]] && [[ $2 ]]; then
         ttl=$(timeout 1 bash -c "ping -c 1 -I $2 $host | grep ttl= | awk -F= '{print \$3,\$4}' | sed 's/ //3; s/time/ /' 2>&1") && echo -e "\n$host   ttl=${ttl}\n"
         for port in $(seq 1 $portRange); do
             timeout 1 bash -c "echo '' > /dev/tcp/$host/$port" 2>/dev/null && echo -e "\t\tPort $port" &
-            sleep .00001
+            sleep .0001
         done; wait
     done
 else
