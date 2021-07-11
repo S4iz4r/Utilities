@@ -24,8 +24,10 @@ Options:
 Leave the field empty to use all combinations (symbols included)
 or enter your own character list: """))
 
+
 def split(password_characters):
     return list(password_characters)
+
 
 if password_characters == "":
     password_characters = split(lower + upper + num + simb)
@@ -42,19 +44,18 @@ elif password_characters == "5":
 else:
     password_characters = split(password_characters)
 
-password = []
-counter = 1
-t1 = time()
-def generator(password, password_length, dictionary_size, counter, password_characters):
-	while counter <= dictionary_size:
-		for i in range(password_length):
-			password.append(random.choice(password_characters))
-		data = "".join(map(str,password))
-		counter += 1
-		file.write(f"{data}\n")
-		password = []
 
-generator(password, password_length, dictionary_size, counter, password_characters)
+def generator(password_length, password_characters):
+    password = []
+    for i in range(password_length):
+        password.append(random.choice(password_characters))
+    file.write(f"{''.join(map(str, password))}\n")
+    password = []
+
+
+t1 = time()
+for _ in range(dictionary_size):
+    generator(password_length, password_characters)
 t2 = time()
 print(f"\nDictionary completed in {round(t2-t1,2)} seconds\n")
 
