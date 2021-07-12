@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-#coding: utf-8
+# coding: utf-8
 
+import string
 import random
 from time import time
 
-lower = ("abcdefghijklmnopqrstuvwxyz")
-upper = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-num = ("0123456789")
-simb = ('!@#$%^&*()-_+=~[]{}|\':;<>,.?"/')
 
 file_name = str(input("\nEnter name for dictionary: "))
 file = open(f"{file_name}.txt", "w")
@@ -25,24 +22,24 @@ Leave the field empty to use all combinations (symbols included)
 or enter your own character list: """))
 
 
-def split(password_characters):
-    return list(password_characters)
-
-
 if password_characters == "":
-    password_characters = split(lower + upper + num + simb)
+    password_characters = (
+            string.ascii_lowercase +
+            string.ascii_uppercase +
+            string.punctuation
+            )
 elif password_characters == "1":
-    password_characters = split(lower)
+    password_characters = string.ascii_lowercase
 elif password_characters == "2":
-    password_characters = split(upper)
+    password_characters = string.ascii_uppercase
 elif password_characters == "3":
-    password_characters = split(num)
+    password_characters = string.digits
 elif password_characters == "4":
-    password_characters = split(lower + upper)
+    password_characters = string.ascii_letters
 elif password_characters == "5":
-    password_characters = split(upper + num)
+    password_characters = string.ascii_uppercase + string.digits
 else:
-    password_characters = split(password_characters)
+    password_characters = password_characters
 
 
 def generator(password_length, password_characters):
@@ -58,5 +55,4 @@ for _ in range(dictionary_size):
     generator(password_length, password_characters)
 t2 = time()
 print(f"\nDictionary completed in {round(t2-t1,2)} seconds\n")
-
 file.close()
