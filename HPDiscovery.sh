@@ -10,14 +10,13 @@ tput civis
 portRangeStart=1
 portRange=5000
 
-if [[ $3 ]] && [[ -z $4 ]]; then
-    portRange=$3
-elif [[ $3 ]] && [[ $4 ]]; then
-    portRangeStart=$3
-    portRange=$4
-fi
-
 if [[ $1 == *.*.*. ]] && [[ $2 ]]; then
+    if [[ $3 ]] && [[ -z $4 ]]; then
+        portRange=$3
+    elif [[ $3 ]] && [[ $4 ]]; then
+        portRangeStart=$3
+        portRange=$4
+    fi
     ip_address=$1
     hosts=()
     echo -e "[*] Scanning Hosts for $ip_address??"
