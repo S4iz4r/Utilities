@@ -16,5 +16,5 @@ echo -e "\t${blueColour}[*] IP Address:${endColour}${grayColour} $ip_address${en
 echo -e "\t${blueColour}[*] Open ports:${endColour}${grayColour} $ports${endColour}\n" >> extractPorts.tmp
 echo "nmap -sC -sV -p"$ports $ip_address "-oN targeted" | tr -d '\n' | xclip -sel clip
 echo -e "${yellowColour}[*] Ports copied to clipboard${endColour}\n" >> extractPorts.tmp
-bat extractPorts.tmp
+cat extractPorts.tmp
 rm extractPorts.tmp
