@@ -20,6 +20,7 @@ if [[ $1 == *.*.*. ]] && [[ $2 ]]; then
         done
     done; wait
 else
-    echo -e "\n[*] Use:  allHostDyscovery.sh  <ip-address --.--.--.> <interface> [!] Example: allHostDiscovery.sh 127.0.0. eth0\n"
+    echo -e "\n[*] Use:  allHostDyscovery.sh  <ip-address --.--.--.> <interface> [!] Example: allHostDiscovery.sh 127.0.0. eth0"
+    echo -e "[!] If you enter 0.0.0. it may take too long.\n"
     exit 1
 fi
