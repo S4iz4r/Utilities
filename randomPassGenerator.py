@@ -43,11 +43,7 @@ else:
 
 
 def generator(password_length, password_characters):
-    password = []
-    for i in range(password_length):
-        password.append(random.choice(password_characters))
-    file.write(f"{''.join(map(str, password))}\n")
-    password = []
+    file.write(''.join(random.choices(password_characters, k=password_length)) + "\n")
 
 
 t1 = time()
