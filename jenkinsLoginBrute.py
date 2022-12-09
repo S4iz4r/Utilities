@@ -3,6 +3,7 @@ import requests
 import argparse
 import concurrent.futures
 
+# Originally created by gquere   ==>   https://github.com/gquere
 
 # IGNORE SSL WARNING ###########################################################
 import urllib3
