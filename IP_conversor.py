@@ -1,4 +1,11 @@
-IP_input = input("Introduzca IP con el subnet ( IP/24 por ejemplo ): ")
+import re
+
+while True:
+	IP_input = input("Introduzca IP con el subnet ( IP/24 por ejemplo ): ")
+	if re.match("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\/\d[0-9]{1,3}$", IP_input):
+		break
+	print("\nDebes introducir un formato correcto! 192.168.1.66/24 por ejemplo.\n")
+
 IP, CIDR = IP_input.split('/')
 CIDR = int(CIDR)
 bin_ip_octets = []
@@ -6,7 +13,7 @@ for octet in IP.split('.'):
     octet = '{0:08b}'.format(int(octet))
     bin_ip_octets.append(octet)
 
-print(f"IP_ADDRESS        -> {IP}       ->  {'.'.join(bin_ip_octets)}")
+print(f"\nIP_ADDRESS        -> {IP}       ->  {'.'.join(bin_ip_octets)}")
 
 bin_net_masc = []
 net_octet = []
