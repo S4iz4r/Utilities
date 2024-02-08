@@ -26,8 +26,7 @@ for i in range(4):
 for octet in bin_net_masc:
     net_masc.append(str(int(octet, 2)))
 
-print(f'NETWORK_MASC      -> {".".join(net_masc)
-                              }      ->  {".".join(bin_net_masc)}')
+print(f'NETWORK_MASC      -> {".".join(net_masc)}      ->  {".".join(bin_net_masc)}')
 
 
 bin_id_octet = []
@@ -47,8 +46,7 @@ for i in range(4):
 for octet in bin_id_octet:
     net_id.append(str(int(octet, 2)))
 
-print(f'NETWORK_ID        -> {".".join(net_id)
-                              }         ->  {".".join(bin_id_octet)}')
+print(f'NETWORK_ID        -> {".".join(net_id)}         ->  {".".join(bin_id_octet)}')
 
 
 bin_br_add = []
@@ -67,5 +65,4 @@ for i in range(4):
 for octet in bin_br_add:
     br_add.append(str(int(octet, 2)))
 
-print(f'BROADCAST ADDRESS -> {".".join(br_add)
-                              }     ->  {".".join(bin_br_add)}')
+print(f'BROADCAST ADDRESS -> {".".join(br_add)}     ->  {".".join(bin_br_add)}')
