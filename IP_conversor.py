@@ -1,12 +1,11 @@
 import re
 
 while True:
-	IP_input = input("Introduzca IP con el subnet ( IP/24 por ejemplo ): ")
-	if re.match("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\/\d[0-9]{1,3}$", IP_input):
-		break
-	print("\nDebes introducir un formato correcto! 192.168.1.66/24 por ejemplo.\n")
-
-IP, CIDR = IP_input.split('/')
+    ip_input = input("Introduzca IP con el subnet ( IP/24 por ejemplo ): ")
+    if re.match("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\/([0-9]{1,2})$", ip_input):
+        break
+    print("\nDebes introducir un formato correcto! 192.168.1.66/24 por ejemplo.\n")
+IP, CIDR = ip_input.split('/')
 CIDR = int(CIDR)
 bin_ip_octets = []
 for octet in IP.split('.'):
@@ -31,7 +30,8 @@ for i in range(4):
 for octet in bin_net_masc:
     net_masc.append(str(int(octet, 2)))
 
-print(f'NETWORK_MASC      -> {".".join(net_masc)}      ->  {".".join(bin_net_masc)}')
+print(
+    f'NETWORK_MASC      -> {".".join(net_masc)}      ->  {".".join(bin_net_masc)}')
 
 
 bin_id_octet = []
@@ -51,7 +51,8 @@ for i in range(4):
 for octet in bin_id_octet:
     net_id.append(str(int(octet, 2)))
 
-print(f'NETWORK_ID        -> {".".join(net_id)}         ->  {".".join(bin_id_octet)}')
+print(
+    f'NETWORK_ID        -> {".".join(net_id)}         ->  {".".join(bin_id_octet)}')
 
 
 bin_br_add = []
@@ -70,4 +71,5 @@ for i in range(4):
 for octet in bin_br_add:
     br_add.append(str(int(octet, 2)))
 
-print(f'BROADCAST ADDRESS -> {".".join(br_add)}     ->  {".".join(bin_br_add)}')
+print(
+    f'BROADCAST ADDRESS -> {".".join(br_add)}     ->  {".".join(bin_br_add)}')
