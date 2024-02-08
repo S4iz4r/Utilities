@@ -3,7 +3,6 @@ import sys
 IP_input = input("Introduzca IP con el subnet ( IP/24 por ejemplo ): ")
 IP, CIDR = IP_input.split('/')
 CIDR = int(CIDR)
-print(f"IP: {IP} CIDR: {CIDR}")
 bin_ip_octets = []
 for octet in IP.split('.'):
     octet = '{0:08b}'.format(int(octet))
