@@ -1,8 +1,6 @@
 import re
 import tkinter as tk
 
-# IP/Mask regex ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/([1-9]|[1-2][0-9]|3[0-2]))$
-
 
 def find_matches(event):
     text_entry.tag_delete("match")
