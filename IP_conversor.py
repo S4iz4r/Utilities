@@ -2,15 +2,9 @@ import re
 
 while True:
     ip_input = input("\nIntroduzca IP con el subnet ( IP/24 por ejemplo ): ")
-    if re.match("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\/([0-9]{1,2})$", ip_input) and int(ip_input.split('/')[1]) <= 32 and int(ip_input.split('/')[1]) >= 1:
-        try:
-            IP, CIDR = ip_input.split('/')
-            for octet in IP.split('.'):
-                if int(octet) > 255:
-                    raise Exception()
-            break
-        except:
-            pass
+    if re.match("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/([1-9]|[1-2][0-9]|3[0-2]))$", ip_input):
+        IP, CIDR = ip_input.split('/')
+        break
     print("\nDebes introducir un formato correcto! 192.168.1.66/24 por ejemplo.\n")
 
 CIDR = int(CIDR)
