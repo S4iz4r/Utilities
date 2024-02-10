@@ -10,19 +10,19 @@ def examples():
     text_entry.insert(
         '1.0', """This regex above is to check if URL exist in the text.
         
-        This is an example text, this text contains emails, phone numbers and other sample designed for
-        testing purposes. To use this tool, please type a regular expression in the text-area above.
+This is an example text, this text contains emails, phone numbers and other sample designed for
+testing purposes. To use this tool, please type a regular expression in the text-area above.
         
-        When designing regex for emails make sure you cover all possible email types like:
-        info@breatheco.de, dragon23@gmail.com, dragon_ball@yahoo.com.us and also test for bad email
-        formats like ramond=32@skas.com
+When designing regex for emails make sure you cover all possible email types like:
+info@breatheco.de, dragon23@gmail.com, dragon_ball@yahoo.com.us and also test for bad email
+formats like ramond=32@skas.com
         
-        When texting for urls you have samples like this: https://thedomain.com.ve/dir1/dir2.html, some
-        urls don't have extensions like this http://www.thedomain.net/directory1, maybe you will find some
-        urls with nested subdomains like http://test.www.thedomain.com.ve/directory1
+When texting for urls you have samples like this: https://thedomain.com.ve/dir1/dir2.html, some
+urls don't have extensions like this http://www.thedomain.net/directory1, maybe you will find some
+urls with nested subdomains like http://test.www.thedomain.com.ve/directory1
         
-        Credits: Thanks to Florian Dedov for inspiring me to create this simple but entertaining project.
-        Sample text extracted from: https://4geeks.com/lesson/regex-tutorial-regular-expression-examples""")
+Credits: Thanks to Florian Dedov for inspiring me to create this simple but entertaining project.
+Sample text extracted from: https://4geeks.com/lesson/regex-tutorial-regular-expression-examples""")
     find_matches('')
 
 
@@ -52,9 +52,7 @@ def find_matches(event):
 
 root = tk.Tk()
 root.title('Regex Checker')
-menu_bar = tk.Menu()
-menu_bar.add_command(label='Example Regex/Text', command=examples)
-root.config(bg='grey', menu=menu_bar)
+root.config(bg='grey')
 
 
 regex_label = tk.Label(root, text='Enter Regex:',
@@ -85,8 +83,10 @@ match_all_text = tk.Label(root, text='Orange background for whole text match', f
     'Arial', 12, 'bold'), bg='orange', fg='black')
 match_all_text.grid(row=2, column=2, padx=5, pady=5, sticky='w')
 
-
 error_label = tk.Label(root, bg='grey', font=('Arial', 12, 'bold'), fg='brown')
 error_label.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
 
+example_button = tk.Button(text='Example Regex/Text',
+                           font=('Arial', 12, 'bold'), fg='black', command=examples)
+example_button.grid(row=3, column=2, sticky='e')
 root.mainloop()
