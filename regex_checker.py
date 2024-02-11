@@ -46,7 +46,7 @@ def find_matches(event):
                 text_entry.tag_config("match", foreground='black',
                                       background='yellow', font=('Arial', 15, 'bold'))
         except Exception as e:
-            error_label.config(text=e, fg='brown',
+            error_label.config(text=f'Regex error!  {e}', fg='brown',
                                font=('Arial', 12, 'bold'))
 
 
@@ -84,7 +84,7 @@ match_all_text = tk.Label(root, text='Orange background for whole text match', f
 match_all_text.grid(row=2, column=2, padx=5, pady=5, sticky='w')
 
 error_label = tk.Label(root, bg='grey', font=('Arial', 12, 'bold'), fg='brown')
-error_label.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
+error_label.grid(row=3, column=1, padx=5, pady=5, sticky='e')
 
 example_button = tk.Button(text='Example Regex/Text',
                            font=('Arial', 12, 'bold'), fg='black', command=examples)
