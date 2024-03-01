@@ -6,7 +6,7 @@ def examples():
     regex_entry.delete(0, "end")
     text_entry.delete('1.0', "end")
     regex_entry.insert(
-        0, "((https?):((//)|(\\\\))+([a-zA-Z0-9\d:#@%/;$()~_?\+\-=\\\.&](#!)?)*)")
+        0, "((https?):((//)|(\\\\))+([a-zA-Z0-9\d:#@%/;$()~_?\+\-=\\\.&](#!)?)*)|(?<=>)(\w+)(?=<)")
     text_entry.insert(
         '1.0', """This regex above is to check if URL exist in the text.
         
@@ -20,7 +20,10 @@ formats like ramond=32@skas.com
 When texting for urls you have samples like this: https://thedomain.com.ve/dir1/dir2.html, some
 urls don't have extensions like this http://www.thedomain.net/directory1, maybe you will find some
 urls with nested subdomains like http://test.www.thedomain.com.ve/directory1
-        
+
+To parse text between tags, excluding tags, you can use lookaround assertions, (?=foo) Lookahead, (?<=foo) Lookbehind, (?!foo) Negative Lookahead and (?<!foo) Negative Lookbehind.
+For example, you can use (?<=text>)(\w+)(?=</text) to parse or check the content inside de tags <text>foo</text> or (?<=>)(\w+)(?=<) to parse all the content inside of >foo< excluding all the tags.
+
 Credits: Thanks to Florian Dedov for inspiring me to create this simple but entertaining project.
 Sample text extracted from: https://4geeks.com/lesson/regex-tutorial-regular-expression-examples""")
     find_matches('')
