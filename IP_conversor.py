@@ -1,11 +1,11 @@
 import re
 
 while True:
-    ip_input = input("\nIntroduzca IP con el subnet ( IP/24 por ejemplo ): ")
+    ip_input = input("\nEnter the IP with NetMask ( IP/24 ): ")
     if re.match("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/([1-9]|[1-2][0-9]|3[0-2]))$", ip_input):
         IP, CIDR = ip_input.split('/')
         break
-    print("\nDebes introducir un formato correcto! 192.168.1.66/24 por ejemplo.\n")
+    print("\nInser IP/MASK in the correct format! 192.168.1.66/24 for example.\n")
 
 CIDR = int(CIDR)
 bin_ip_octets = []
